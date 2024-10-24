@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопросно-ответная система</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Вопросно-ответная система</h1>
+    <form method="post" action="/search/">
+        <label for="question">Введите ваш вопрос:</label>
+        <input type="text" id="question" name="question" required>
+        <button type="submit">Найти ответ</button>
+    </form>
+    
+    {% if answer %}
+    <div>
+        <h3>Ответ:</h3>
+        <p>{{ answer }}</p>
+    </div>
+    {% endif %}
+
+    <div>
+        <h3>Случайный вопрос:</h3>
+        <p>Вопрос: {{ random_qna[0] }}</p>
+        <p>Ответ: {{ random_qna[1] }}</p>
+    </div>
+</body>
+</html>

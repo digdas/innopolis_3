@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: qna_db
+      POSTGRES_USER: qna_user
+      POSTGRES_PASSWORD: qna_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: ./backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - ./backend:/app
+    environment:
+      POSTGRES_DB: qna_db
+      POSTGRES_USER: qna_user
+      POSTGRES_PASSWORD: qna_password
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    entrypoint: ["/bin/sh", "-c", "python load_data.py && uvicorn main:app --host 0.0.0.0 --port 8000"]
+
+volumes:
+  postgres_data:
