@@ -11,8 +11,8 @@
 - Сравнивать ответ, предоставленный моделью, с рандомным примером из базы данных.
 
 ## Структура проекта
+├── backend/ │ ├── Dockerfile │ ├── requirements.txt │ ├── main.py └── docker-compose.yml
 
-question_answering/ ├── backend/ │ ├── Dockerfile │ ├── requirements.txt │ ├── main.py └── docker-compose.yml
 ### Описание файлов
 
 - **`docker-compose.yml`**: Файл для настройки контейнеров Docker. Определяет службы для веб-приложения и базы данных PostgreSQL.
